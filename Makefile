@@ -1,5 +1,5 @@
 requirements:
-	pip install -r required.txt
+	pip install -r requirements.txt
 
 run:
 	python categoria.py
