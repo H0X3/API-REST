@@ -23,6 +23,10 @@ Steps
 
         make run
 
-4.  Run web site
+4.  GET API message
 
-        open /app/categoria.py
+        open http://localhost:5000
+
+5.  POST API list send json
+
+        http://localhost:5000/api/get_content
