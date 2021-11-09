@@ -6,7 +6,6 @@ import os
 
 app = Flask(__name__)
 
-
 @app.route('/api/get_content', methods=['POST'])
 
 def ordenar():
