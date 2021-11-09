@@ -10,10 +10,15 @@ app = Flask(__name__)
 @app.route('/api/get_content', methods=['POST'])
 
 def ordenar():
+    order = ""
+    reverse_order = ""
     data = request.get_json(force=True)
     path = data['path']
-    order = str(data['order'])
-    reverse_order = str(data['reverse_orde'])
+    
+    if 'order' in data.keys():
+        order = str(data['order'])
+    if 'reverse_order' in data.keys():
+        reverse_order = str(data['reverse_order'])
 
     if order == "size" and reverse_order == "" or reverse_order == "False":
         j=0
@@ -28,6 +33,16 @@ def ordenar():
         j=0
         dic={}
         paths = sorted(Path(path).iterdir(), key=os.path.getsize)
+        paths.reverse()
+        for i in paths:
+            dic[j] = [str(i)]
+            j+=1
+        return jsonify(dic)
+    
+    elif order == "" and reverse_order == "True":
+        j=0
+        dic={}
+        paths = sorted(Path(path).iterdir(), key=os.path.getmtime)
         paths.reverse()
         for i in paths:
             dic[j] = [str(i)]
